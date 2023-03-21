@@ -10,24 +10,28 @@ User.init({
         autoIncrement: true,
         primaryKey: true,
     },
-    Input_value: {
+    Fields_Input: {
         type: sequelize_1.DataTypes.JSON,
-        allowNull: true,
+        allowNull: false,
     },
-    RadioBox: {
+    Fields_RadioBox: {
         type: sequelize_1.DataTypes.JSON,
-        allowNull: true,
+        allowNull: false,
     },
-    CheckBox: {
+    Fields_CheckBox: {
         type: sequelize_1.DataTypes.JSON,
-        allowNull: true,
+        allowNull: false,
     },
-    TextArea: {
+    Fields_TextArea: {
+        type: sequelize_1.DataTypes.JSON,
+        allowNull: false,
+    },
+    Fields_Image: {
         type: sequelize_1.DataTypes.JSON,
         allowNull: true,
     },
 }, {
     sequelize: db_1.sequelize,
-    tableName: "users_form",
+    tableName: "Fields_Form",
 });
 exports.default = User;

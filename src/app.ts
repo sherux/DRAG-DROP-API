@@ -1,17 +1,32 @@
 import express from "express";
+const CORS = require("cors");
 import { sequelize } from "./util/db";
 const app = express();
-// import bodyParser from "body-parser";
+app.use(CORS());
+app.options("*", CORS());
+
 app.use(express.json());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 import routes from "./routes/drag.routes";
 app.use("/drag&drop", routes);
+// ---------------------CORS---------------
+app.set("trust proxy", true);
+app.all("/*", (req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "http://localhost:5000 http://172.16.16.182:5000"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  next();
+});
 
+app.use(CORS(), routes);
 // ----------------------DATABASE SETUP------------------
 sequelize
-  .sync({})
+  .sync()
   .then(() => {
     console.log("Database conneted");
   })

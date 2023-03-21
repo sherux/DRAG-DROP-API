@@ -3,10 +3,11 @@ import { sequelize } from "../util/db";
 
 class User extends Model {
   public id!: number;
-  public Input_value!: object;
-  public RadioBox!: object;
-  public CheckBox!: object;
-  public TextArea!: object;
+  public Fields_Input!: object;
+  public Fields_RadioBox!: object;
+  public Fields_CheckBox!: object;
+  public Fields_TextArea!: object;
+  public Fields_Image!: object;
 }
 
 User.init(
@@ -16,26 +17,30 @@ User.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    Input_value: {
+    Fields_Input: {
       type: DataTypes.JSON,
-      allowNull: true,
+      allowNull: false,
     },
-    RadioBox: {
+    Fields_RadioBox: {
       type: DataTypes.JSON,
-      allowNull: true,
+      allowNull: false,
     },
-    CheckBox: {
+    Fields_CheckBox: {
       type: DataTypes.JSON,
-      allowNull: true,
+      allowNull: false,
     },
-    TextArea: {
+    Fields_TextArea: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
+    Fields_Image: {
       type: DataTypes.JSON,
       allowNull: true,
     },
   },
   {
     sequelize,
-    tableName: "users_form",
+    tableName: "Fields_Form",
   }
 );
 

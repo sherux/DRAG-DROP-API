@@ -1,19 +1,6 @@
 import USER from "../model/drag.model";
 import { RequestHandler } from "express";
 
-// --------------------------GET API------------------------
-export const GetDragAndDropData: RequestHandler = async (req, res) => {
-  try {
-    const userdata = await USER.findAll();
-
-    res.status(200).json({ message: "data succesfully fetch", data: userdata });
-  } catch (error: any) {
-    console.log("error2", error);
-
-    res.status(400).json({ message: error.message });
-  }
-};
-
 // --------------------------GET API BY ID------------------------
 
 export const GetDragAndDropDataByid: RequestHandler = async (req, res) => {
@@ -24,7 +11,7 @@ export const GetDragAndDropDataByid: RequestHandler = async (req, res) => {
 
     res.status(200).json({ message: "data succesfully fetch", data: userdata });
   } catch (error: any) {
-    console.log("error2", error);
+    // console.log("error2", error);
 
     res.status(400).json({ message: error.message });
   }
@@ -35,10 +22,11 @@ export const GetDragAndDropDataByid: RequestHandler = async (req, res) => {
 export const CreateDragAndDropData: RequestHandler = async (req, res) => {
   try {
     const data = new USER({
-      Input_value: req.body.Input_value,
-      RadioBox: req.body.RadioBox,
-      CheckBox: req.body.CheckBox,
-      TextArea: req.body.TextArea,
+      Fields_Input: req.body.Fields_Input,
+      Fields_RadioBox: req.body.Fields_RadioBox,
+      Fields_CheckBox: req.body.Fields_CheckBox,
+      Fields_TextArea: req.body.Fields_TextArea,
+      Fields_Image: req.body.Fields_Image,
     });
     const userdata = await data.save();
     res
@@ -55,18 +43,19 @@ export const UpdateDragAndDropData: RequestHandler = async (req, res) => {
   try {
     const id: number = +req.params.id;
 
-    const Input_value = req.body.Input_value;
-    const RadioBox = req.body.RadioBox;
-    const CheckBox = req.body.CheckBox;
-    const TextArea = req.body.TextArea;
+    const Fields_Input = req.body.Fields_Input;
+    const Fields_RadioBox = req.body.Fields_RadioBox;
+    const Fields_CheckBox = req.body.Fields_CheckBox;
+    const Fields_TextArea = req.body.Fields_TextArea;
+    const Fields_Image = req.body.Fields_Image;
 
-    console.log(req.body.Input_value);
     const UpdateUserData = await USER.update(
       {
-        Input_value: Input_value,
-        RadioBox: RadioBox,
-        CheckBox: CheckBox,
-        TextArea: TextArea,
+        Fields_Input: Fields_Input,
+        Fields_RadioBox: Fields_RadioBox,
+        Fields_CheckBox: Fields_CheckBox,
+        Fields_TextArea: Fields_TextArea,
+        Fields_Image: Fields_Image,
       },
       {
         where: { id: id },
