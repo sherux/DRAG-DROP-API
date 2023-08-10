@@ -2,36 +2,48 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const db_1 = require("../util/db");
-class User extends sequelize_1.Model {
+class FieldsFormschema extends sequelize_1.Model {
 }
-User.init({
+FieldsFormschema.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
     },
-    Fields_Input: {
+    fields_input: {
         type: sequelize_1.DataTypes.JSON,
         allowNull: false,
     },
-    Fields_RadioBox: {
+    fields_radioBox: {
         type: sequelize_1.DataTypes.JSON,
         allowNull: false,
     },
-    Fields_CheckBox: {
+    fields_checkBox: {
         type: sequelize_1.DataTypes.JSON,
         allowNull: false,
     },
-    Fields_TextArea: {
+    fields_textArea: {
         type: sequelize_1.DataTypes.JSON,
         allowNull: false,
     },
-    Fields_Image: {
+    fields_image: {
         type: sequelize_1.DataTypes.JSON,
+        allowNull: true,
+    },
+    fields_comment: {
+        type: sequelize_1.DataTypes.JSON,
+        allowNull: true,
+    },
+    fields_rating: {
+        type: sequelize_1.DataTypes.JSON,
+        allowNull: true,
+    },
+    f_Id: {
+        type: sequelize_1.DataTypes.INTEGER.UNSIGNED,
         allowNull: true,
     },
 }, {
     sequelize: db_1.sequelize,
     tableName: "Fields_Form",
 });
-exports.default = User;
+exports.default = FieldsFormschema;

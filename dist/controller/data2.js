@@ -13,13 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteDragAndDropData = exports.UpdateDragAndDropData = exports.CreateDragAndDropData = exports.GetDragbyassociate = exports.GetDragAndDropDataByid = void 0;
-const drag_model_1 = __importDefault(require("../model/drag.model"));
 const data_1 = __importDefault(require("../model/data"));
+const drag_model_1 = __importDefault(require("../model/drag.model"));
 // --------------------------GET API BY ID------------------------
 const GetDragAndDropDataByid = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = +req.params.id;
-        const userdata = yield drag_model_1.default.findOne({ where: { id: data } });
+        const userdata = yield data_1.default.findOne({ where: { id: data } });
         res.status(200).json({ message: "data succesfully fetch", data: userdata });
     }
     catch (error) {
@@ -28,15 +28,14 @@ const GetDragAndDropDataByid = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.GetDragAndDropDataByid = GetDragAndDropDataByid;
-// --------------------------GET API BY ID WITH ASSOCIATE------------------------
 const GetDragbyassociate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = +req.params.id;
-        const userdata = yield drag_model_1.default.findAll({
+        const userdata = yield data_1.default.findAll({
             include: [
                 {
-                    model: data_1.default,
-                    as: "Fields_Form2",
+                    model: drag_model_1.default,
+                    as: "Fields_Form",
                 },
             ],
             where: {
@@ -55,14 +54,17 @@ exports.GetDragbyassociate = GetDragbyassociate;
 const CreateDragAndDropData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log(req.body);
-        const data = new drag_model_1.default({
-            fields_input: req.body.fields_input,
-            fields_radioBox: req.body.fields_radioBox,
-            fields_checkBox: req.body.fields_checkBox,
-            fields_textArea: req.body.fields_textArea,
-            fields_image: req.body.fields_image,
-            fields_comment: req.body.fields_comment,
-            fields_rating: req.body.fields_rating,
+        // const data = new USER({
+        //   Fields_Input: req.body.dataElements[0],
+        //   Fields_RadioBox: req.body.dataElements[1],
+        //   Fields_CheckBox: req.body.dataElements[2],
+        //   Fields_TextArea: req.body.dataElements[3],
+        //   Fields_Image: req.body.Fields_Image,
+        //   Fields_Comment: req.body.Fields_Comment,
+        //   Fields_Rating: req.body.Fields_Rating,
+        // });
+        const data = new data_1.default({
+            fields_input2: req.body.fields_input,
             f_Id: req.body.f_id,
         });
         const userdata = yield data.save();
@@ -75,7 +77,7 @@ const CreateDragAndDropData = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
     catch (error) {
         console.log(error.message);
-        res.status(500).json({ message: error });
+        res.status(500).json({ message: error.message });
     }
 });
 exports.CreateDragAndDropData = CreateDragAndDropData;
@@ -83,14 +85,8 @@ exports.CreateDragAndDropData = CreateDragAndDropData;
 const UpdateDragAndDropData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = +req.params.id;
-        const UpdateUserData = yield drag_model_1.default.update({
-            fields_input: req.body.fields_input,
-            fields_radioBox: req.body.fields_radioBox,
-            fields_checkBox: req.body.fields_checkBox,
-            fields_textArea: req.body.fields_textArea,
-            fields_image: req.body.fields_image,
-            fields_comment: req.body.fields_comment,
-            fields_rating: req.body.fields_rating,
+        const UpdateUserData = yield data_1.default.update({
+            fields_input2: req.body.fields_input,
         }, {
             where: { id: id },
         });
@@ -108,7 +104,7 @@ exports.UpdateDragAndDropData = UpdateDragAndDropData;
 const DeleteDragAndDropData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = +req.params.id;
-        const DeleteUserData = yield drag_model_1.default.destroy({
+        const DeleteUserData = yield data_1.default.destroy({
             where: { id: id },
         });
         res

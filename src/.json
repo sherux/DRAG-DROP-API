@@ -67,7 +67,31 @@
       "data": [
         {
           "innerIndex": 9,
-          "src": "http://img/src"
+          "src": "Enter Your image path"
+        }
+      ]
+    },
+    {
+      "type": "comment",
+      "data": [
+        {
+          "innerIndex": 10,
+          "commentPlaceholder": "Enter Your Comment"
+        }
+      ]
+    },
+    {
+      "type": "rating",
+      "data": [
+        {
+          "innerIndex": 11,
+          "name": "nps_score",
+          "title": "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
+          "isRequired": true,
+          "rateMin": 0,
+          "rateMax": 10,
+          "minRateDescription": "(Most unlikely)",
+          "maxRateDescription": "(Most likely)"
         }
       ]
     }

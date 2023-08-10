@@ -11,7 +11,11 @@ app.use(CORS());
 app.options("*", CORS());
 app.use(express_1.default.json());
 const drag_routes_1 = __importDefault(require("./routes/drag.routes"));
+const data3_1 = __importDefault(require("./routes/data3"));
+const drag_model_1 = __importDefault(require("./model/drag.model"));
+const data_1 = __importDefault(require("./model/data"));
 app.use("/drag&drop", drag_routes_1.default);
+app.use("/data", data3_1.default);
 // ---------------------CORS---------------
 app.set("trust proxy", true);
 app.all("/*", (req, res, next) => {
@@ -20,14 +24,24 @@ app.all("/*", (req, res, next) => {
     next();
 });
 app.use(CORS(), drag_routes_1.default);
+const Fields_Form = drag_model_1.default;
+const Fields_Form2 = data_1.default;
+Fields_Form.hasMany(Fields_Form2, {
+    foreignKey: "f_Id",
+    as: "Fields_Form2",
+});
+Fields_Form2.belongsTo(Fields_Form, {
+    foreignKey: "f_Id",
+    as: "Fields_Form",
+});
 // ----------------------DATABASE SETUP------------------
 db_1.sequelize
     .sync()
     .then(() => {
-    console.log("Database conneted");
+    console.log("Connection has been established successfully.");
 })
     .catch((err) => {
-    console.log("error", err.message);
+    console.log("Unable to connect to the database: ", err.message);
 });
 // -------------------------SERVER CREATE-----------------
 app.listen(5000, () => {

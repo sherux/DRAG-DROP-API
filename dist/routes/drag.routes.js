@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const drag_control_1 = require("../controller/drag.control");
 // ALL DRAG&DROP ROUTES
+router.get("/ALL/:id", drag_control_1.GetDragbyassociate);
 router.get("/:id", drag_control_1.GetDragAndDropDataByid);
 router.post("/create", drag_control_1.CreateDragAndDropData);
 router.put("/update/:id", drag_control_1.UpdateDragAndDropData);

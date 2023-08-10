@@ -1,9 +1,20 @@
 "use strict";
+// import { Sequelize } from "sequelize";
+// require("dotenv").config();
+// export const sequelize = new Sequelize("DRAG&DROP", "root", "Abbas@123", {
+//   dialect: "mysql",
+//   host: "localhost",
+// });
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sequelize = void 0;
-const sequelize_1 = require("sequelize");
+const Sequelize = require("sequelize");
 require("dotenv").config();
-exports.sequelize = new sequelize_1.Sequelize("DRAG&DROP", "abbasali", "Abbas@123", {
+const database = process.env.database;
+const username = process.env.username;
+const password = process.env.password;
+const host = process.env.host;
+exports.sequelize = new Sequelize(database, username, password, {
     dialect: "mysql",
-    host: "localhost",
+    host: host,
+    logging: false,
 });

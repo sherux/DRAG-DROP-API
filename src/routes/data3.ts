@@ -1,12 +1,12 @@
 import express from "express";
 const router = express.Router();
 import {
+  GetDragbyassociate,
   GetDragAndDropDataByid,
   CreateDragAndDropData,
   UpdateDragAndDropData,
   DeleteDragAndDropData,
-  GetDragbyassociate,
-} from "../controller/drag.control";
+} from "../controller/data2";
 
 // ALL DRAG&DROP ROUTES
 router.get("/ALL/:id", GetDragbyassociate);

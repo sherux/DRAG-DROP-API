@@ -1,40 +1,55 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../util/db";
 
-class User extends Model {
+class FieldsFormschema extends Model {
   public id!: number;
-  public Fields_Input!: object;
-  public Fields_RadioBox!: object;
-  public Fields_CheckBox!: object;
-  public Fields_TextArea!: object;
-  public Fields_Image!: object;
+  public fields_input!: object;
+  public fields_radioBox!: object;
+  public fields_checkBox!: object;
+  public fields_textArea!: object;
+  public fields_image!: object;
+  public fields_comment!: object;
+  public fields_rating!: object;
+  public f_Id!: number;
 }
 
-User.init(
+FieldsFormschema.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
-    Fields_Input: {
+    fields_input: {
       type: DataTypes.JSON,
       allowNull: false,
     },
-    Fields_RadioBox: {
+    fields_radioBox: {
       type: DataTypes.JSON,
       allowNull: false,
     },
-    Fields_CheckBox: {
+    fields_checkBox: {
       type: DataTypes.JSON,
       allowNull: false,
     },
-    Fields_TextArea: {
+    fields_textArea: {
       type: DataTypes.JSON,
       allowNull: false,
     },
-    Fields_Image: {
+    fields_image: {
       type: DataTypes.JSON,
+      allowNull: true,
+    },
+    fields_comment: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+    fields_rating: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+    f_Id: {
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: true,
     },
   },
@@ -44,4 +59,4 @@ User.init(
   }
 );
 
-export default User;
+export default FieldsFormschema;
